@@ -4,7 +4,7 @@ A production-style Linux server deployment on Azure, built entirely with Infrast
 Built to simulate a production-ready Linux server with security hardening, automated monitoring, and CI/CD-driven infrastructure deployment.
 
 ## Architecture
-
+```
 User (Browser)
    ↓
 Azure Public IP
@@ -25,6 +25,7 @@ Monitoring & Security
    - custom scripts
 
 Internet → Azure NSG → UFW Firewall → Nginx → Docker → fail2ban → auditd
+```
 
 ## What I Built
 
