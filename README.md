@@ -5,6 +5,8 @@ Built to simulate a production-ready Linux server with security hardening, autom
 
 ## Architecture
 ```
+**Flow Diagram:**
+
 User (Browser)
    ↓
 Azure Public IP
