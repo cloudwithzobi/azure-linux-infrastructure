@@ -1,15 +1,30 @@
 # Azure Linux Infrastructure
 
-A production-style Linux server deployment on Azure, built entirely with 
-Infrastructure as Code. This project covers the full lifecycle of a cloud 
-server — from provisioning to hardening, application delivery, automation, 
-configuration management, and CI/CD.
+A production-style Linux server deployment on Azure, built entirely with Infrastructure as Code.
+Built to simulate a production-ready Linux server with security hardening, automated monitoring, and CI/CD-driven infrastructure deployment.
 
 ## Architecture
-Internet → Azure NSG → UFW Firewall → Nginx (Reverse Proxy) → Docker Container
-↓
-fail2ban (SSH Protection)
-auditd (Audit Logging)
+
+User (Browser)
+   ↓
+Azure Public IP
+   ↓
+NSG (22, 80, 443)
+   ↓
+VM (Ubuntu)
+   ↓
+UFW Firewall
+   ↓
+Nginx (Reverse Proxy)
+   ↓
+Docker Container (App)
+   ↓
+Monitoring & Security
+   - fail2ban
+   - auditd
+   - custom scripts
+
+Internet → Azure NSG → UFW Firewall → Nginx → Docker → fail2ban → auditd
 
 ## What I Built
 
