@@ -1,0 +1,11 @@
+# Terraform sensitive files
+*.tfstate
+*.tfstate.backup
+.terraform/
+tfplan
+*.tfvars
+.terraform.lock.hcl
+
+# SSH keys
+*.pem
+*.key
