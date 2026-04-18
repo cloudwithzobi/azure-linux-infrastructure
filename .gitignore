@@ -1,10 +1,9 @@
-# Terraform sensitive files
+# Terraform
 *.tfstate
 *.tfstate.backup
 .terraform/
 tfplan
 *.tfvars
-.terraform.lock.hcl
 
 # SSH keys
 *.pem

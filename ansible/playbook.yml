@@ -1,0 +1,85 @@
+---
+- name: Configure Phase 1 VM
+  hosts: webservers
+  become: yes
+
+  tasks:
+
+    # Update all packages
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    # Install essential packages
+    - name: Install essential packages
+      apt:
+        name:
+          - curl
+          - wget
+          - git
+          - htop
+          - net-tools
+          - unzip
+        state: present
+
+    # Create a deploy user
+    - name: Create deploy user
+      user:
+        name: deploy
+        shell: /bin/bash
+        create_home: yes
+        state: present
+
+    # Add deploy user to sudo group
+    - name: Add deploy user to sudo group
+      user:
+        name: deploy
+        groups: sudo
+        append: yes
+
+# Ensure UFW is installed
+    - name: Install UFW
+      apt:
+        name: ufw
+        state: present
+
+    # Allow SSH through UFW
+    - name: Allow SSH
+      ufw:
+        rule: allow
+        port: ssh
+        proto: tcp
+
+    # Allow HTTP through UFW
+    - name: Allow HTTP
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    # Allow HTTPS through UFW
+    - name: Allow HTTPS
+      ufw:
+        rule: allow
+        port: '443'
+        proto: tcp
+
+    # Enable UFW
+    - name: Enable UFW
+      ufw:
+        state: enabled
+
+    # Ensure fail2ban is running
+    - name: Ensure fail2ban is running
+      systemd:
+        name: fail2ban
+        state: started
+        enabled: yes
+
+    # Ensure auditd is running
+    - name: Ensure auditd is running
+      systemd:
+        name: auditd
+        state: started
+        enabled: yes
